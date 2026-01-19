@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Midterm Laboratory Examination</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #eff4fd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            padding-top: 70px 50px 20px;
+        }
+
+        .nav {
+            background: #097969;
+            height: 80px;
+            width: 100%;
+        }
+
+        label.logo {
+            color: #ffffff;
+            font-size: 25px;
+            line-height: 80px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+
+        .nav ul {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+
+        .nav ul li a {
+            color: #ffffff;
+            font-size: 17px;
+            padding: 7px 13px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        a.active,
+        a:hover {
+            background: #50C878;
+            transition: .5s;
+        }
+
+        .checkbtn {
+            font-size: 22px;
+            color: #ffffff;
+            float: right;
+            line-height: 80px;
+            margin-right: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        @media (max-width: 1050px) {
+            label.logo {
+                padding-left: 30px;
+            }
+
+            .nav ul li a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 890px) {
+            .checkbtn {
+                display: block;
+            }
+
+            label.logo {
+                font-size: 22px;
+            }
+
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #2c3e50;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+
+            .nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+
+            .nav ul li a {
+                font-size: 20px;
+            }
+
+            a:hover,
+            a.active {
+                background: none;
+                color: #097969;
+            }
+
+            #check:checked ~ ul {
+                left: 0;
+            }
+        }
+
+        .highlight {
+            color: #097969;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #097969;
+            color: #ffffff;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #097969;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover{
+            background-color: #50C878;
+        }
+
+        .results-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .results-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 400px;
+        }
+
+        .results-content p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .close-btn {
+            background-color: #097969;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #50C878;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #097969;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px;
+            display: none;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        #backToTop:hover {
+            background-color: #50C878;
+        }
+
+        body:has(:nth-child(n + 10)) #backToTop {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ANG-Droids</label>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="CSS.html">CSS</a></li>
+            <li><a href="Exercises.html">Exercises</a></li>
+            <li><a class="active" href="#">Test</a></li>
+            <li><a href="Team.html">Team</a></li>
+        </ul>
+    </div>
+    <br>
+    <div class="quiz-container">
+        <h2 style="text-align: center;">Short <span class="highlight">Quiz</span></h2><br>
+
+        <form id="quizForm" onsubmit="return checkAnswers()">
+        </form>
+
+        <button class="submit-btn" onclick="checkAnswers()">Submit Quiz</button>
+    </div>
+
+    <div class="results-modal" id="resultsModal">
+        <div class="results-content">
+            <h2>Quiz Results</h2>
+            <p id="userNameResult"></p>
+            <p id="scoreResult"></p>
+            <p id="gradeResult"></p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+    <br>
+    <footer>
+        <p>&copy; 2024 ANG-Droids. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "Which CSS property is used to change the text color of an element?",
+                choices: ["font-color", "text-color", "color", "text-style"],
+                correctAnswer: 2
+            },
+            {
+                question: "What is the default value of the position property in CSS?",
+                choices: ["relative", "absolute", "static", "fixed"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of the following CSS properties can be used to change the space between lines of text?",
+                choices: ["letter-spacing", "line-height", "word-spacing", "text-align"],
+                correctAnswer: 1
+            },
+            {
+                question: "How can you make a website's layout responsive to different screen sizes?",
+                choices: ["By using @media queries", "By using flexbox only", "By setting a fixed width", "By using text-align: center;"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which CSS property is used to change the background color of an element?",
+                choices: ["background-color", "color-background", "bg-color", "background-style"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which of the following is the correct way to declare a JavaScript variable?",
+                choices: ["var x = 10;", "variable x = 10;", "let x := 10;", "declare x = 10;"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which method is used to add an element to the end of an array in JavaScript?",
+                choices: ["add()", "append()", "insert()", "push()"],
+                correctAnswer: 3
+            },
+            {
+                question: "Which of the following is used to define a function in JavaScript?",
+                choices: ["define myFunction() {}", "function myFunction() {}", "func myFunction() {}", "function: myFunction() {}"],
+                correctAnswer: 1
+            },
+            {
+                question: "Which of the following is NOT a JavaScript data type?",
+                choices: ["Object", "String", "Character", "Boolean"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of the following is the correct way to define a method inside a JavaScript object?",
+                choices: ["const obj = { method: function() {} };", "const obj = { method: () => {} };", "const obj = { method() {} };", "All of the above"],
+                correctAnswer: 3
+            }
+        ];
+
+        function Quiz() {
+            const quizForm = document.getElementById("quizForm");
+            questions.forEach((question, index) => {
+                const questionCard = document.createElement("div");
+                questionCard.classList.add("question-card");
+
+                const questionText = document.createElement("p");
+                questionText.classList.add("question");
+                questionText.innerText = question.question;
+
+                const answersDiv = document.createElement("div");
+                answersDiv.classList.add("answers");
+
+                question.choices.forEach((choice, i) => {
+                    const label = document.createElement("label");
+                    label.innerHTML = `<input type="radio" name="question${index}" value="${i}"> ${choice}`;
+                    answersDiv.appendChild(label);
+                });
+
+                questionCard.appendChild(questionText);
+                questionCard.appendChild(answersDiv);
+                quizForm.appendChild(questionCard);
+            });
+        }
+
+        Quiz();
+
+        function checkAnswers() {
+            let score = 0;
+            let userName = prompt("Please enter your name:");
+
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedAnswer && parseInt(selectedAnswer.value) === question.correctAnswer) {
+                    score++;
+                }
+            });
+
+            let grade = (score / 10) * 50 + 50;
+
+            document.getElementById("userNameResult").innerText = `Name: ${userName}`;
+            document.getElementById("scoreResult").innerText = `Total Score: ${score} / 10`;
+            document.getElementById("gradeResult").innerText = `Equivalent Grade: ${grade}`;
+
+            document.getElementById("resultsModal").style.display = "flex";
+
+            return false;
+        }
+
+        function closeModal() {
+            document.getElementById("resultsModal").style.display = "none";
+        }
+    </script>
+    <a href="#" id="backToTop">↑</a>
+</body>
+</html>
