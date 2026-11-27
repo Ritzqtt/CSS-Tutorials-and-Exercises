@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Midterm Laboratory Examination</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+      * {
+          padding: 0;
+          margin: 0;
+          text-decoration: none;
+          list-style: none;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: "Montserrat", sans-serif;
+          background-color: #eff4fd;
+      }
+
+      html {
+          scroll-behavior: smooth;
+          padding-top: 70px 50px 20px;
+      }
+
+      .nav {
+          background: #097969;
+          height: 80px;
+          width: 100%;
+      }
+
+      label.logo {
+          color: #ffffff;
+          font-size: 25px;
+          line-height: 80px;
+          padding: 0 100px;
+          font-weight: bold;
+      }
+
+      .nav ul {
+          float: right;
+          margin-right: 20px;
+      }
+
+      .nav ul li {
+          display: inline-block;
+          line-height: 80px;
+          margin: 0 5px;
+      }
+
+      .nav ul li a {
+          color: #ffffff;
+          font-size: 17px;
+          padding: 7px 13px;
+          border-radius: 3px;
+          text-transform: uppercase;
+      }
+
+      a.active, a:hover {
+          background: #50C878;
+          transition: .5s;
+      }
+
+      .checkbtn {
+          font-size: 22px;
+          color: #ffffff;
+          float: right;
+          line-height: 80px;
+          margin-right: 30px;
+          cursor: pointer;
+          display: none;
+      }
+
+      #check {
+          display: none;
+      }
+
+      @media (max-width: 1050px) {
+          label.logo {
+              padding-left: 30px;
+          }
+
+          .nav ul li a {
+              font-size: 16px;
+          }
+      }
+
+      @media (max-width: 890px) {
+          .checkbtn {
+              display: block;
+          }
+
+          label.logo {
+              font-size: 22px;
+          }
+
+          ul {
+              position: fixed;
+              width: 100%;
+              height: 100vh;
+              background: #2c3e50;
+              top: 80px;
+              left: -100%;
+              text-align: center;
+              transition: all .5s;
+          }
+
+          .nav ul li {
+              display: block;
+              margin: 50px 0;
+              line-height: 30px;
+          }
+
+          .nav ul li a {
+              font-size: 20px;
+          }
+
+          a:hover, a.active {
+              background: none;
+              color: #097969;
+          }
+
+          #check:checked ~ ul {
+              left: 0;
+          }
+      }
+
+      footer {
+          text-align: center;
+          padding: 10px 0;
+          background: #097969;
+          color: #ffffff;
+      }
+
+      #backToTop {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #097969;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          text-align: center;
+          line-height: 50px;
+          display: none;
+          transition: background-color 0.3s;
+          text-decoration: none;
+      }
+
+      #backToTop:hover {
+          background-color: #50C878;
+          color: #ffffff;
+      }
+
+      body:has(:nth-child(n + 10)) #backToTop {
+          display: block;
+      }
+
+      .card-container {
+          display: flex;
+          flex-direction: column;
+          margin: 20px;
+      }
+
+      .card {
+          background-color: #ffffff;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          margin: 10px 0;
+          padding: 15px;
+          font-size: 16px;
+          color: #333;
+          overflow: auto;
+          cursor: pointer;
+          transition: background-color 0.3s;
+      }
+
+      .card:hover {
+          background-color: #f9f9f9;
+      }
+
+      .answer {
+          display: none;
+          background-color: #f9f9f9;
+          border: 4px solid #50C878;
+          border-radius: 5px;
+          padding: 15px;
+          margin: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">ANG-Droids</label>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="CSS.html">CSS</a></li>
+        <li><a class="active" href="#">Exercises</a></li>
+        <li><a href="Test.html">Test</a></li>
+        <li><a href="Team.html">Team</a></li>
+      </ul>
+    </div>
+
+    <div class="card-container">
+      <div class="card" id="exercise1" onclick="toggleAnswer('answer1')">
+        <strong>Exercise 1.1</strong>
+        <p>Revise the HTML document to use the Exer1 CSS document:</p><br>
+        <h4>Exer1.css</h4><br>
+          <pre>
+            H1 {color: blue}
+            H3 {color: red}
+          </pre>
+        <h4>Exer1.html</h4><br>
+          <pre>
+            &lt;html&gt;
+            &lt;head&gt;
+            &lt;title&gt;HTML Heading&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+            &lt;H1 ALIGN="CENTER"&gt;Rizal Technological University&lt;/H1&gt;
+            &lt;H2 ALIGN="CENTER"&gt;COURSES OFFERED&lt;/H2&gt;
+            &lt;H3 ALIGN="CENTER"&gt;Bachelor of Science in Information Technology&lt;/H3&gt;
+            &lt;H4 ALIGN="CENTER"&gt;Bachelor of Science in Education&lt;/H4&gt;
+            &lt;H5 ALIGN="CENTER"&gt;Bachelor of Science in Commerce&lt;/H5&gt;
+            &lt;H6 ALIGN="CENTER"&gt;Bachelor of Science in Computer Engineering&lt;/H6&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;</pre>
+      </div>
+      <div class="answer" id="answer1">
+        <strong>Answer:</strong>
+        <h4>Exer1.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;HTML Heading&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Exer1.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1 align="center"&gt;Rizal Technological University&lt;/h1&gt;
+              &lt;h2 align="center"&gt;COURSES OFFERED&lt;/h2&gt;
+              &lt;h3 align="center"&gt;Bachelor of Science in Information Technology&lt;/h3&gt;
+              &lt;h4 align="center"&gt;Bachelor of Science in Education&lt;/h4&gt;
+              &lt;h5 align="center"&gt;Bachelor of Science in Commerce&lt;/h5&gt;
+              &lt;h6 align="center"&gt;Bachelor of Science in Computer Engineering&lt;/h6&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.1.png" alt="exer1.1"></div><br>
+      </div>
+
+      <div class="card" id="exercise2" onclick="toggleAnswer('answer2')">
+        <strong>Exercise 1.2</strong>
+        <p>Create an HTML document that will use the CSS document shown below. The HTML document will display your resume; 
+          use at least three of the following CSS tags given.</p><br>
+        <h4>Resume.css</h4><br>
+          <pre>
+            H1 {color:yellow}
+            H2 {color:green}
+            H3 {color:red}
+            H4 {color:orange}
+            H5 {color:gold}
+            H6 {color:blue}</pre>
+      </div>
+      <div class="answer" id="answer2"> 
+        <strong>Answer:</strong>
+        <h4>Resume.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Resume&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Resume.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1&gt;Christian Barcoma&lt;/h1&gt;
+              &lt;h2&gt;Contact Information&lt;/h2&gt;
+              &lt;p&gt;Email: 2023-103235@rtu.edu.ph&lt;/p&gt;
+              &lt;p&gt;Phone: (+63) 912-129-3284&lt;/p&gt;
+          
+              &lt;h2&gt;Objective&lt;/h2&gt;
+              &lt;p&gt;To obtain a challenging position that allows me to utilize my skills and grow professionally.&lt;/p&gt;
+          
+              &lt;h2&gt;Education&lt;/h2&gt;
+              &lt;h3&gt;Bachelor of Science in Information Technology&lt;/h3&gt;
+              &lt;p&gt;Rizal Technological University, 2023-20xx&lt;/p&gt;
+          
+              &lt;h2&gt;Skills&lt;/h2&gt;
+              &lt;h3&gt;Programming Languages&lt;/h3&gt;
+              &lt;p&gt;Java, JavaScript, HTML, CSS, C++, ASM&lt;/p&gt;
+          
+              &lt;h2&gt;References&lt;/h2&gt;
+              &lt;p&gt;Available upon request.&lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.2.png" alt="exer1.2"></div><br>
+      </div>
+
+      <div class="card" id="exercise3" onclick="toggleAnswer('answer3')">
+        <strong>Exercise 1.3</strong>
+        <p>Create an HTML document that will CSS tags, your webpage should display your favourite poem. The title must be the 
+          largest size with a color blue, the writer of the poem must be 3 times smaller than the title with a green color, and 
+          the poem must be in standard size and in orange color.</p>
+      </div>
+      <div class="answer" id="answer3"> 
+        <strong>Answer:</strong>
+        <h4>Poem.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;The Seven Ages of Man&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Poem.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1&gt;The Seven Ages of Man&lt;/h1&gt;
+              &lt;h2&gt;by William Shakespeare&lt;/h2&gt;
+              &lt;p&gt;
+                  All the world's a stage,&lt;br&gt;
+                  And all the men and women merely players;&lt;br&gt;
+                  They have their exits and their entrances;&lt;br&gt;
+                  And one man in his time plays many parts,&lt;br&gt;
+                  His acts being seven ages. At first, the infant,&lt;br&gt;
+                  Mewling and puking in the nurse's arms.
+              &lt;/p&gt;
+              &lt;p&gt;
+                  Then the whining schoolboy, with his satchel&lt;br&gt;
+                  And shining morning face, creeping like snail&lt;br&gt;
+                  Unwillingly to school. And then the lover,&lt;br&gt;
+                  Sighing like furnace, with a woeful ballad&lt;br&gt;
+                  Made to his mistress' eyebrow. Then a soldier,&lt;br&gt;
+                  Full of strange oaths, and bearded like the pard,&lt;br&gt;
+                  Jealous in honor, sudden and quick in quarrel,&lt;br&gt;
+                  Seeking the bubble reputation&lt;br&gt;
+                  Even in the cannon's mouth.
+              &lt;/p&gt;
+              &lt;p&gt;
+                  And then the justice,&lt;br&gt;
+                  In fair round belly with good capon lined,&lt;br&gt;
+                  With eyes severe and beard of formal cut,&lt;br&gt;
+                  Full of wise saws and modern instances;&lt;br&gt;
+                  And so he plays his part. The sixth age shifts&lt;br&gt;
+                  Into the lean and slippered pantaloon,&lt;br&gt;
+                  With spectacles on nose and pouch on side,&lt;br&gt;
+                  His youthful hose, well saved, a world too wide&lt;br&gt;
+                  For his shrunk shank; and his big manly voice,&lt;br&gt;
+                  Turning again toward childish treble, pipes&lt;br&gt;
+                  And whistles in his sound. Last scene of all,&lt;br&gt;
+                  That ends this strange eventful history,&lt;br&gt;
+                  Is second childishness and mere oblivion,&lt;br&gt;
+                  Sans teeth, sans eyes, sans taste, sans everything.
+              &lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Poem.css</h4><br>
+        <pre>
+            h1 {
+              color: blue;
+              font-size: 2.5em;
+            }
+            
+            h2 {
+              color: green;
+              font-size: 0.83em;
+            }
+            
+            p {
+              color: orange;
+              font-size: 1em;
+            }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.3.png" alt="exer1.3"></div><br>
+      </div>
+
+      <div class="card" id="exercise4" onclick="toggleAnswer('answer4')">
+        <strong>Exercise 1.4</strong>
+        <p>Create an HTML document with CSS tags that will display the RTU Mission and Vision, the title must be in yellow text color,
+          the text must display the RTU color blue and yellow. </p>
+      </div>
+      <div class="answer" id="answer4"> 
+        <strong>Answer:</strong>
+        <h4>MissionVision.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;RTU Mission and Vision&lt;/title&gt;
+              &lt;link rel="stylesheet" href="MissionVision.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1&gt;RTU Mission and Vision&lt;/h1&gt;
+              &lt;h2&gt;Mission&lt;/h2&gt;
+              &lt;p&gt;
+                  To produce competent and socially responsible professionals through innovative instructions, 
+                  high- impact research, and sustainable extension services responsive to the diverse needs of global communities.
+              &lt;/p&gt;
+              &lt;h2&gt;Vision&lt;/h2&gt;
+              &lt;p&gt;
+                  A smart and transnational university.
+              &lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>MissionVision.css</h4><br>
+        <pre>
+            h1 {
+              color: yellow;
+            }
+            
+            h2 {
+              color: blue;
+            }
+            
+            p {
+              color: blue;
+              font-size: 1em;
+            }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.4.png" alt="exer1.4"></div><br>
+      </div>
+
+      <div class="card" id="exercise5" onclick="toggleAnswer('answer5')">
+        <strong>Exercise 1.5</strong>
+        <p>Create an HTML with CSS tags for the RTU Hymn with body background color yellow and H1 tag with background color green.</p>
+      </div>
+      <div class="answer" id="answer5"> 
+        <strong>Answer:</strong>
+        <h4>Hymn.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;RTU Hymn&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Hymn.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1&gt;RTU Hymn&lt;/h1&gt;
+              &lt;p&gt;
+                  Keep the flame alive &lt;br&gt;
+                  burning in our hearts &lt;br&gt;
+                  that we may honor you &lt;br&gt;
+                  in love and service &lt;br&gt;
+                  passing through your gates &lt;br&gt;
+                  soon with knowledge filled; &lt;br&gt;
+                  hands that learned to shape &lt;br&gt;
+                  the firm foundation of our lives
+              &lt;/p&gt;
+              &lt;p&gt;
+                  Refrain &lt;br&gt;
+                  Dare to dream, let's spread our wings &lt;br&gt;
+                  then soar to the height; &lt;br&gt;
+                  build a bridge across the skies; &lt;br&gt;
+                  and reach for the stars Keep the flame alive &lt;br&gt;
+                  burning in our hearts &lt;br&gt;
+                  that we may truly serve &lt;br&gt;
+                  our GOD and country. &lt;br&gt;
+                  Hero's name we claim &lt;br&gt;
+                  school we hold so dear &lt;br&gt;
+                  hand in hand let's move &lt;br&gt;
+                  onward to greatness…… Rizal Tech! &lt;br&gt;
+              &lt;/p&gt;
+              &lt;p&gt;
+                  Refrain &lt;br&gt;
+                  Dare to dream, &lt;br&gt;
+                  let's spread our wings &lt;br&gt;
+                  then soar to the height; &lt;br&gt;
+                  build a bridge across the skies; &lt;br&gt;
+                  and reach for the stars
+              &lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Hymn.css</h4><br>
+        <pre>
+          body {
+          background-color: yellow;
+          }
+          
+          h1 {
+            background-color: green;
+            color: white;
+            padding: 10px;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.5.png" alt="exer1.5"></div><br>
+      </div>
+
+      <div class="card" id="exercise6" onclick="toggleAnswer('answer6')">
+        <strong>Exercise 1.6</strong>
+        <p>Create an HTML with CSS tags for “Panatang Makabayan” with red, blue, yellow and white background.</p>
+      </div>
+      <div class="answer" id="answer6"> 
+        <strong>Answer:</strong>
+        <h4>PanatangMakabayan.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Panatang Makabayan&lt;/title&gt;
+              &lt;link rel="stylesheet" href="PanatangMakabayan.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1&gt;Panatang Makabayan&lt;/h1&gt;
+              &lt;div class="content"&gt;
+                  &lt;p&gt;
+                      Iniibig ko ang Pilipinas, &lt;br&gt;
+                      aking lupang sinilangan &lt;br&gt;
+                      tahanan ng aking lahi; &lt;br&gt;
+                      kinukupkop ako at tinutulungan &lt;br&gt;
+                      maging malakas, masipag at marangal.
+                  &lt;/p&gt;
+                  &lt;p&gt;
+                      Dahil mahal ko ang Pilipinas, &lt;br&gt;
+                      diringgin ko ang payo &lt;br&gt;
+                      ng aking mga magulang, &lt;br&gt;
+                      susundin ko ang tuntunin ng paaralan, &lt;br&gt;
+                      tutuparin ko ang tungkulin &lt;br&gt;
+                      ng mamamayang makabayan; &lt;br&gt;
+                      naglilingkod, nag-aaral, at nananalangin &lt;br&gt;
+                      nang buong katapatan.
+                  &lt;/p&gt;
+                  &lt;p&gt;
+                      Iaalay ko ang aking buhay, &lt;br&gt;
+                      pangarap, pagsisikap &lt;br&gt;
+                      sa bansang Pilipinas.
+                  &lt;/p&gt;
+              &lt;/div&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>PanatangMakabayan.css</h4><br>
+        <pre>
+          body {
+            background-color: red;
+          }
+          
+          h1 {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            text-align: center;
+          }
+          
+          .content {
+            background-color: yellow;
+            color: black;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.6.png" alt="exer1.6"></div><br>
+      </div>
+
+      <div class="card" id="exercise7" onclick="toggleAnswer('answer7')">
+        <strong>Exercise 1.7</strong>
+        <p>1. Create an HTML document that will use CSS tags, your webpage must display at least 3 paragraphs with a background color and text 
+          color of your choice.</p><br>
+        <p>2. Create an HTML document using CSS tags that will display the television shows in the afternoon for the 3 different channels. 
+          All must have a background and font color of your choice. Apply the different property background in the lesson.</p><br>
+        <p>3. Create an HTML document using CSS tags that will display the Philippine National Anthem song and a background of 
+          Philippine flag image and color.</p>
+      </div>
+      <div class="answer" id="answer7"> 
+        <strong>Answer:</strong>
+        <h4>1. Paragraph.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;My Interests&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Paragraph.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+          
+              &lt;div class="section"&gt;
+                  &lt;h2&gt;Gaming&lt;/h2&gt;
+                  &lt;p&gt;Gaming has evolved significantly over the years, from simple pixelated games to immersive virtual realities. 
+                  Today, it encompasses a wide variety of genres and platforms, appealing to players of all ages.&lt;/p&gt;
+              &lt;/div&gt;
+          
+              &lt;div class="section"&gt;
+                  &lt;h2&gt;Music&lt;/h2&gt;
+                  &lt;p&gt;Music is a universal language that transcends cultural boundaries. Whether it's classical, rock, or hip-hop, 
+                  music has the power to evoke emotions and bring people together.&lt;/p&gt;
+              &lt;/div&gt;
+          
+              &lt;div class="section"&gt;
+                  &lt;h2&gt;Information Technology&lt;/h2&gt;
+                  &lt;p&gt;Information technology is at the heart of modern society. It drives innovation, connects people, 
+                  and is integral to the functioning of businesses and services worldwide.&lt;/p&gt;
+              &lt;/div&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>1. Paragraph.css</h4><br>
+        <pre>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+          }
+          
+          .section {
+            background-color: #282c34;
+            color: #61dafb;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.7.1.png" alt="exer1.7.1"></div><br>
+        <h4>2. Shows.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Afternoon TV Shows&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Shows.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+          
+              &lt;div class="show show-eat-bulaga"&gt;
+                  &lt;h2&gt;Eat Bulaga&lt;/h2&gt;
+                  &lt;p&gt;A long-running variety show featuring games, performances, and heartwarming segments.&lt;/p&gt;
+              &lt;/div&gt;
+          
+              &lt;div class="show show-its-showtime"&gt;
+                  &lt;h2&gt;It's Showtime&lt;/h2&gt;
+                  &lt;p&gt;A lively talent show showcasing various performers and entertaining segments.&lt;/p&gt;
+              &lt;/div&gt;
+          
+              &lt;div class="show show-tvj"&gt;
+                  &lt;h2&gt;TVJ&lt;/h2&gt;
+                  &lt;p&gt;A comedy show that combines skits, parodies, and celebrity guests for a fun-filled afternoon.&lt;/p&gt;
+              &lt;/div&gt;
+          
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>2. Shows.css</h4><br>
+        <pre>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+          }
+          
+          .show {
+            color: #ffffff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+          }
+          
+          .show-eat-bulaga {
+            background-color: #ff6347;
+          }
+          
+          .show-its-showtime {
+            background-color: #4682b4;
+          }
+          
+          .show-tvj {
+            background-color: #32cd32;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.7.2.png" alt="exer1.7.2"></div><br>
+        <h4>3. Philippines.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Philippine National Anthem&lt;/title&gt;
+              &lt;link rel="stylesheet" href="Philippines.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+
+              &lt;div class="anthem-container"&gt;
+                  &lt;h1&gt;Lupang Hinirang&lt;/h1&gt;
+                  &lt;p&gt;Bayang magiliw, perlas ng silanganan,&lt;br&gt;
+                  Alab ng puso, sa dibdib mo'y buhay.&lt;br&gt;
+                  Lupang hinirang, duyan ka ng magiting,&lt;br&gt;
+                  Sa manlulupig, di ka pasisiil.&lt;/p&gt;
+                  
+                  &lt;p&gt;Sa dagat at bundok, sa simoy at sa langit mong bughaw,&lt;br&gt;
+                  May dilag ang tula, at awit sa paglayang minamahal.&lt;br&gt;
+                  Ang kislap ng watawat mo'y tagumpay na nagniningning,&lt;br&gt;
+                  Ang bituin at araw niya, kailan pa ma'y di magdilim.&lt;/p&gt;
+                  
+                  &lt;p&gt;Lupa ng araw, ng luwalhati't pagsinta,&lt;br&gt;
+                  Buhay ang ligaya sa piling mo.&lt;br&gt;
+                  Aming ligaya, sa tuwa ng pagkakaisa,&lt;br&gt;
+                  Ang bayaning sa'yo'y nangako ng buhay.&lt;/p&gt;
+              &lt;/div&gt;
+
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>3. Philippines.css</h4><br>
+        <pre>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Flag_of_the_Philippines.svg/2560px-Flag_of_the_Philippines.svg.png') 
+              no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+          }
+          
+          .anthem-container {
+              background-color: rgba(0, 0, 0, 0.7);
+              padding: 20px;
+              border-radius: 8px;
+              max-width: 600px;
+              margin: 50px auto;
+              text-align: center;
+          }
+          
+          h1 {
+              font-size: 2em;
+              margin-bottom: 20px;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer1.7.3.png" alt="exer1.7.3" style="width: 50; height: auto;"></div><br>
+      </div>
+
+      <div class="card" id="exercise8" onclick="toggleAnswer('answer8')">
+        <strong>Exercise 2.1</strong>
+        <p>Given the html output, apply the CSS design in the my_indent.css</p><br>
+        <h4>my_indent.css</h4><br>
+          <pre>
+            p {text-indent:100px; }</pre><br>
+            <img src="exercises_image/Exercise 2.1.png" alt="Exercise 2.1">
+      </div>
+      <div class="answer" id="answer8"> 
+        <strong>Answer:</strong>
+        <h4>my_indent.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;My_Indent&lt;/title&gt;
+              &lt;link rel="stylesheet" href="my_indent.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1 style="text-transform: uppercase; text-decoration: underline;"&gt;The Benefits of Knowing Your Purpose&lt;/h1&gt;
+              &lt;p&gt;&lt;strong&gt;Knowing&lt;/strong&gt; the &lt;u&gt;purpose&lt;/u&gt; of your life will give your life a &lt;strong&gt;direction&lt;/strong&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;strong&gt;Knowing&lt;/strong&gt; the &lt;u&gt;purpose&lt;/u&gt; of your life will give you &lt;span style="font-size: 1.2em;"&gt;peace of mind&lt;/span&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;span style="font-size: 0.9em;"&gt;Knowing&lt;/span&gt; the &lt;u&gt;purpose&lt;/u&gt; of your life will give you &lt;em&gt;self reliance&lt;/em&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;span style="text-decoration: line-through;"&gt;Knowing&lt;/span&gt; the &lt;u&gt;purpose&lt;/u&gt; of your life will give you &lt;span style="font-size: 0.8em; vertical-align: sub;
+                "&gt;strong determination to survive in every trials in life&lt;/span&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;span style="font-size: 0.8em; vertical-align: super;"&gt;Knowing&lt;/span&gt; the &lt;u&gt;purpose&lt;/u&gt; of your life will &lt;span style="font-family: 
+                'Comic Sans MS', cursive;"&gt;satisfy your life style&lt;/span&gt;&lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.1.png" alt="exer2.1"></div><br>
+      </div>
+
+      <div class="card" id="exercise9" onclick="toggleAnswer('answer9')">
+        <strong>Exercise 2.2</strong>
+        <p>Write an HTML code for the sample webpage shown below and apply the text_align.css</p><br>
+        <h4>text_align.css</h4><br>
+          <pre>
+            h3 {text-align: center; }
+            h4 {text-align: left; }
+            h5 {text-align: justify; }
+            h6 {text-align: right; }</pre><br>
+            <img src="exercises_image/Exercise 2.2.png" alt="Exercise 2.2">
+      </div>
+      <div class="answer" id="answer9"> 
+        <strong>Answer:</strong>
+        <h4>text_align.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Text_align&lt;/title&gt;
+              &lt;link rel="stylesheet" href="text_align.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h3&gt;Life Responsibilities&lt;/h3&gt;
+              &lt;table border="1"&gt;
+                  &lt;tr&gt;
+                      &lt;th&gt;Life Responsibilities&lt;/th&gt;
+                      &lt;th&gt;Aside from anatomical differences, how are men and women differ&lt;/th&gt;
+                      &lt;th&gt;Insights for a Happy Ever After&lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Being in good physical shape&lt;/td&gt;
+                      &lt;td&gt;In the way they use their time&lt;/td&gt;
+                      &lt;td&gt;Growing relationship with God&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Having a clean home&lt;/td&gt;
+                      &lt;td&gt;In the way they use their money&lt;/td&gt;
+                      &lt;td&gt;Caring&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Having your finances in order&lt;/td&gt;
+                      &lt;td&gt;In the way they approach their careers&lt;/td&gt;
+                      &lt;td&gt;Sense of humor&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Having quality intimacy&lt;/td&gt;
+                      &lt;td&gt;In the way they use their free time&lt;/td&gt;
+                      &lt;td&gt;Attractiveness&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Succeeding in your career&lt;/td&gt;
+                      &lt;td&gt;In the way they parent&lt;/td&gt;
+                      &lt;td&gt;Loyal, trustworthy&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                      &lt;td&gt;Time with God&lt;/td&gt;
+                      &lt;td&gt;In the way they approach God&lt;/td&gt;
+                      &lt;td&gt;Fun, good listener, and communicator&lt;/td&gt;
+                  &lt;/tr&gt;
+              &lt;/table&gt;
+              &lt;p&gt;* According to Bill and Pam Farrel&lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.2.png" alt="exer2.2"></div><br>
+      </div>
+      
+      <div class="card" id="exercise10" onclick="toggleAnswer('answer10')">
+        <strong>Exercise 2.3</strong>
+        <p>Write the CSS and HTML code to apply underline, overline and line-through in each line of text for the
+          following output below:</p><br>
+          <img src="exercises_image/Exercise 2.3.png" alt="Exercise 2.3">
+      </div>
+      <div class="answer" id="answer10"> 
+        <strong>Answer:</strong>
+        <h4>text_styles.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Text_styles&lt;/title&gt;
+              &lt;link rel="stylesheet" href="text_styles.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h3&gt;Jobs Opening&lt;/h3&gt;
+              &lt;p class="styled-text"&gt;Computer Programmer&lt;/p&gt;
+              &lt;p class="styled-text"&gt;Computer Technician&lt;/p&gt;
+              &lt;p class="styled-text"&gt;Software Developer&lt;/p&gt;
+              &lt;p class="styled-text"&gt;Web Developer&lt;/p&gt;
+              &lt;p class="styled-text"&gt;Data Encoder&lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>text_styles.css</h4><br>
+        <pre>
+          .styled-text {
+            text-decoration: underline overline line-through;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.3.png" alt="exer2.3"></div><br>
+      </div>
+
+      <div class="card" id="exercise11" onclick="toggleAnswer('answer11')">
+        <strong>Exercise 2.4</strong>
+        <p>Write the CSS and HTML code to apply underline and overline in each line of text for the following
+          output below:</p><br>
+          <img src="exercises_image/Exercise 2.4.png" alt="Exercise 2.4">
+      </div>
+      <div class="answer" id="answer11"> 
+        <strong>Answer:</strong>
+        <h4>text_styles.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;text_styles&lt;/title&gt;
+              &lt;link rel="stylesheet" href="text_styles.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h3&gt;Example Explained&lt;/h3&gt;
+              &lt;ul&gt;
+                  &lt;li class="styled-text"&gt;The &lt;!DOCTYPE html&gt; declaration defines this document to be HTML5&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;html&gt; element is the root element of an HTML page&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;head&gt; element contains meta information about the document&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;title&gt; element specifies a title for the document&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;body&gt; element contains the visible page content&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;h1&gt; element defines a large heading&lt;/li&gt;
+                  &lt;li class="styled-text"&gt;The &lt;p&gt; element defines a paragraph&lt;/li&gt;
+              &lt;/ul&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>text_styles.css</h4><br>
+        <pre>
+          .styled-text {
+            text-decoration: underline overline;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.4.png" alt="exer2.4"></div><br>
+      </div>
+
+      <div class="card" id="exercise12" onclick="toggleAnswer('answer12')">
+        <strong>Exercise 2.5</strong>
+        <p>Write the CSS and HTML codes of the sample text below. Use 20 pixels for paragraph spacing for the
+          title and 10 pixels in the remaining paragraph after the title.</p><br>
+          <img src="exercises_image/Exercise 2.5.png" alt="Exercise 2.5">
+      </div>
+      <div class="answer" id="answer12"> 
+        <strong>Answer:</strong>
+        <h4>paragraph_styles.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Paragraph_styles&lt;/title&gt;
+              &lt;link rel="stylesheet" href="paragraph_styles.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h3&gt;Web Page Development using HTML&lt;/h3&gt;
+              &lt;p class="intro"&gt;
+                  &lt;strong&gt;HTML&lt;/strong&gt; - stands for Hyper Text Markup Language, which is the most widely used language on Web to develop web pages.
+              &lt;/p&gt;
+              &lt;ul&gt;
+                  &lt;li&gt;HTML was created by Berners-Lee in late 1991 but "HTML 2.0" was the first standard HTML specification which was published in 1995.&lt;/li&gt;
+                  &lt;li&gt;&lt;strong&gt;Hypertext&lt;/strong&gt; refers to the way in which Web pages (HTML documents) are linked together. Thus, the link available on a webpage is called Hypertext.&lt;/li&gt;
+                  &lt;li&gt;As its name suggests, &lt;strong&gt;HTML&lt;/strong&gt; is a &lt;strong&gt;Markup Language&lt;/strong&gt; which means you use HTML to simply "mark-up" 
+                    a text document with tags that tell a Web browser how to structure it to display.&lt;/li&gt;
+              &lt;/ul&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>paragraph_styles.css</h4><br>
+        <pre>
+          h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+          }
+          
+          .intro {
+              font-size: 20px;
+              margin-bottom: 10px;
+          }
+          
+          ul li {
+              font-size: 10px;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.5.png" alt="exer2.5"></div><br>
+      </div>
+
+      <div class="card" id="exercise13" onclick="toggleAnswer('answer13')">
+        <strong>Exercise 2.6</strong>
+        <p>Write the original HTML codes in all lowercase text below and apply CSS using the four values for texttransform, capitalize, 
+          uppercase, lowercase and none.</p><br>
+        <img src="exercises_image/Exercise 2.6.png" alt="Exercise 2.6">
+      </div>
+      <div class="answer" id="answer13"> 
+        <strong>Answer:</strong>
+        <h4>text_transform.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Text_transform&lt;/title&gt;
+              &lt;link rel="stylesheet" href="text_transform.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h3&gt;Definitions&lt;/h3&gt;
+              &lt;ul&gt;
+                  &lt;li class="capitalize"&gt;www -- a software infrastructure layered on top of the internet&lt;/li&gt;
+                  &lt;li class="uppercase"&gt;http -- hypertext transport protocol, layered on top of tcp&lt;/li&gt;
+                  &lt;li class="lowercase"&gt;https -- secure http using encryption&lt;/li&gt;
+                  &lt;li class="none"&gt;html -- hypertext markup language, version 4.01 is current&lt;/li&gt;
+              &lt;/ul&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>text_transform.css</h4><br>
+        <pre>
+          .capitalize {
+            text-transform: capitalize;
+          }
+          
+          .uppercase {
+              text-transform: uppercase;
+          }
+          
+          .lowercase {
+              text-transform: lowercase;
+          }
+          
+          .none {
+              text-transform: none;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.6.png" alt="exer2.6"></div><br>
+      </div>
+
+      <div class="card" id="exercise14" onclick="toggleAnswer('answer14')">
+        <strong>Exercise 2.7</strong>
+        <p>Create an HTML and CSS code for the following output</p><br>
+        <img src="exercises_image/Exercise 2.7.png" alt="Exercise 2.7">
+      </div>
+      <div class="answer" id="answer14"> 
+        <strong>Answer:</strong>
+        <h4>internet.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+              &lt;head&gt;
+                  &lt;meta charset="UTF-8"&gt;
+                  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                  &lt;title&gt;What is Internet?&lt;/title&gt;
+                  &lt;link rel="stylesheet" href="internet.css"&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                  &lt;header&gt;
+                      &lt;h1 class="centered pink"&gt;WHAT IS INTERNET?&lt;/h1&gt;
+                  &lt;/header&gt;
+                  &lt;main&gt;
+                      &lt;p class="centered"&gt;Like many &lt;span class="highlight"&gt;inventions,&lt;/span&gt; the internet began as the solution to a problem.&lt;/p&gt;
+                      &lt;p class="underlined"&gt;It began with the government's need to find a way to link several &lt;span class="highlight cyan"&gt;computer networks&lt;/span&gt; together so files could be shared.&lt;/p&gt;
+                      &lt;p class="right-aligned"&gt;In other words, it created a &lt;span class="highlight green"&gt;network&lt;/span&gt; &lt;span class="highlight orange"&gt;of&lt;/span&gt; 
+                        &lt;span class="highlight violet"&gt;networks.&lt;/span&gt;&lt;/p&gt;
+                      &lt;p&gt;These computer networks were located all over the world sharing information the old-fashioned way took a long time.&lt;/p&gt;
+                  &lt;/main&gt;
+              &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>internet.css</h4><br>
+        <pre>
+          .centered {
+            text-align: center;
+          }
+          
+          .right-aligned {
+              text-align: right;
+          }
+          
+          .pink {
+              color: pink;
+          }
+          
+          .highlight {
+              font-size: 24px;
+              text-decoration: underline;
+              color: blue;
+          }
+          
+          .cyan {
+              color: cyan;
+          }
+          
+          .green {
+              color: green;
+          }
+          
+          .orange {
+              color: orange;
+          }
+          
+          .violet {
+              color: violet;
+          }
+          
+          .underlined {
+              text-decoration: underline;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer2.7.png" alt="exer2.7" style="width: 1000px; height: auto;"></div><br>
+      </div>
+
+      <div class="card" id="exercise15" onclick="toggleAnswer('answer15')">
+        <strong>Exercise 3.1</strong>
+        <p>Create an HTML and CSS code to create the following output.</p><br>
+        <img src="exercises_image/Exercise 3.1.png" alt="Exercise 3.1">
+        <p></p><br>
+        <p>Create an HTML and CSS codes that will display the Philippine Anthem with different borders in each
+          paragraph.</p>
+      </div>
+      <div class="answer" id="answer15"> 
+        <strong>Answer:</strong>
+        <h4>border_style.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Border Style&lt;/title&gt;
+              &lt;link rel="stylesheet" href="border_style.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h2&gt;The border-style Property&lt;/h2&gt;
+              &lt;p&gt;This property specifies what kind of border to display:&lt;/p&gt;
+              &lt;div class="border-example dotted"&gt;A dotted border.&lt;/div&gt;
+              &lt;div class="border-example dashed"&gt;A dashed border.&lt;/div&gt;
+              &lt;div class="border-example solid"&gt;A solid border.&lt;/div&gt;
+              &lt;div class="border-example double"&gt;A double border.&lt;/div&gt;
+              &lt;div class="border-example groove"&gt;A groove border.&lt;/div&gt;
+              &lt;div class="border-example ridge"&gt;A ridge border.&lt;/div&gt;
+              &lt;div class="border-example inset"&gt;An inset border&lt;/div&gt;
+              &lt;div class="border-example outset"&gt;An outset border.&lt;/div&gt;
+              &lt;div class="border-example none"&gt;No border&lt;/div&gt;
+              &lt;div class="border-example hidden"&gt;A hidden border.&lt;/div&gt;
+              &lt;div class="border-example mixed"&gt;A mixed border (dotted, dashed, solid, double).&lt;/div&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>border_style.css</h4><br>
+        <pre>
+          body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+          }
+          
+          h2 {
+              text-align: left;
+              font-weight: bold;
+          }
+          
+          p {
+              font-size: 14px;
+              margin: 5px 0;
+          }
+          
+          .border-example {
+              padding: 10px;
+              margin: 10px 0;
+          }
+          
+          .dotted {
+              border: 2px dotted black;
+          }
+          
+          .dashed {
+              border: 2px dashed black;
+          }
+          
+          .solid {
+              border: 2px solid black;
+          }
+          
+          .double {
+              border: 4px double black;
+          }
+          
+          .groove {
+              border: 4px groove black;
+          }
+          
+          .ridge {
+              border: 4px ridge black;
+          }
+          
+          .inset {
+              border: 4px inset black;
+          }
+          
+          .outset {
+              border: 4px outset black;
+          }
+          
+          .none {
+              border: none;
+          }
+          
+          .hidden {
+              border: 4px hidden black;
+          }
+          
+          .mixed {
+              border-style: dotted dashed solid double;
+              border-width: 2px;
+              border-color: black;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer3.1.1.png" alt="exer3.1.1"></div><br>
+        <h4>philippine_anthem.html</h4><br>
+        <pre>
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang="en"&gt;
+          &lt;head&gt;
+              &lt;meta charset="UTF-8"&gt;
+              &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+              &lt;title&gt;Philippine National Anthem&lt;/title&gt;
+              &lt;link rel="stylesheet" href="philippine_anthem.css"&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+              &lt;h1 class="centered"&gt;Lupang Hinirang&lt;/h1&gt;
+              &lt;p class="border-example solid"&gt;Bayang magiliw, Perlas ng Silanganan, 
+                  Alab ng puso 
+                  sa dibdib mo'y buhay&lt;/p&gt;
+              &lt;p class="border-example dashed"&gt;Lupang hinirang, 
+                  Duyan ka ng magiting,
+                  Sa manlulupig
+                  Di ka pasisiil.&lt;/p&gt;
+              &lt;p class="border-example dotted"&gt;Sa dagat at bundok, 
+                  Sa simoy at sa langit mong bughaw,
+                  May dilag ang tula
+                  At awit sa paglayang minamahal.&lt;/p&gt;
+              &lt;p class="border-example double"&gt;Ang kislap ng watawat mo'y
+                  Tagumpay na nagniningning;
+                  Ang bituin at araw niya,
+                  Kailan pa ma'y di magdidilim.&lt;/p&gt;
+              &lt;p class="border-example groove"&gt;Lupa ng araw, ng luwalhati't pagsinta,
+                  Buhay ay langit sa piling mo;
+                  Aming ligaya na 'pag may mang-aapi,
+                  Ang mamatay nang dahil sa 'yo.&lt;/p&gt;
+          &lt;/body&gt;
+          &lt;/html&gt;</pre><br>
+        <h4>philippine_anthem.css</h4><br>
+        <pre>
+          body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+          }
+          
+          h1 {
+              text-align: center;
+          }
+          
+          .border-example {
+              padding: 15px;
+              margin: 10px 0;
+          }
+          
+          .solid {
+              border: 2px solid #000000;
+          }
+          
+          .dashed {
+              border: 2px dashed #000000;
+          }
+          
+          .dotted {
+              border: 2px dotted #000000;
+          }
+          
+          .double {
+              border: 4px double #000000;
+          }
+          
+          .groove {
+              border: 4px groove #000000;
+          }
+          
+          .centered {
+              text-align: center;
+          }</pre><br>
+        <h4>Output:</h4>
+        <div style="margin-left: 100px;"><img src="exercises_image/Exer3.1.2.png" alt="exer3.1.2"></div><br>
+      </div>
+    </div>
+
+    <script>
+      function toggleAnswer(answerId) {
+          const answerElement = document.getElementById(answerId);
+          if (answerElement.style.display === "none" || answerElement.style.display === "") {
+              answerElement.style.display = "block";
+          } else {
+              answerElement.style.display = "none";
+          }
+      }
+    </script>
+
+    <footer>
+      <p>&copy; 2024 ANG-Droids. All rights reserved.</p><br>
+      <ul>
+          <li>
+              <a href="https://e-rtu.edu.ph/pluginfile.php/620930/mod_resource/content/1/Cascading%20Style%20Sheet_CSS.pdf" target="_blank" class="reflink">
+                  Cascading Style Sheet (CSS)
+              </a> - An Introduction to CSS concepts and techniques.
+          </li>
+      </ul>
+    </footer>
+
+    <a href="#" id="backToTop">↑</a>
+  </body>
+</html>
