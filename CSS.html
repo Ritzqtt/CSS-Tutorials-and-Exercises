@@ -25,13 +25,20 @@
 
       html {
         scroll-behavior: smooth;
-        padding-top: 70px 50px 20px;
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar {
+        display: none;
       }
 
       .nav {
         background: #097969;
         height: 80px;
         width: auto;
+        position: sticky;
+        top: 0;
+        z-index: 300;
       }
 
       label.logo {
@@ -88,9 +95,18 @@
         .nav ul li a {
           font-size: 16px;
         }
+
+        .card-container {
+          max-width: 960px;
+          padding: 16px;
+        }
       }
 
       @media (max-width: 890px) {
+        body:has(#check:checked) {
+          overflow: hidden;
+        }
+
         .checkbtn {
           display: block;
         }
@@ -99,15 +115,20 @@
           font-size: 22px;
         }
 
-        ul {
+        .nav ul {
           position: fixed;
+          inset: 80px 0 0 0;
           width: 100%;
-          height: 100vh;
+          height: calc(100vh - 80px);
+          height: calc(100dvh - 80px);
           background: #2c3e50;
-          top: 80px;
           left: -100%;
           text-align: center;
           transition: all .5s;
+          z-index: 299;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
         }
 
         .nav ul li {
@@ -131,9 +152,12 @@
       }
 
       .card-container {
-        display: inline-flex;
+        display: flex;
         flex-direction: column;
         gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 40px;
         margin-bottom: 40px;
         padding: 20px;
       }
@@ -143,6 +167,37 @@
         border-radius: 8px;
         padding: 15px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .card pre {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        background: #ffffff;
+        border: 1px solid #d7d7d7;
+        border-radius: 6px;
+        padding: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .card ol,
+      .card ul {
+        padding-left: 24px;
+      }
+
+      .card li {
+        list-style: initial;
+      }
+
+      .card ol li {
+        list-style: decimal;
       }
 
       .card h2, h3{
@@ -217,6 +272,129 @@
       .reflink{
         color: #50C878;
       }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 890px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        [style*="margin-left: 100px"] {
+          margin-left: 0 !important;
+        }
+
+        .card-container {
+          width: 100%;
+          max-width: 100%;
+          padding: 12px;
+          gap: 12px;
+        }
+
+        .card {
+          width: 100%;
+          overflow-wrap: anywhere;
+        }
+
+        .card h2 {
+          font-size: 22px;
+          line-height: 1.3;
+        }
+
+        .card h3 {
+          font-size: 18px;
+          line-height: 1.4;
+        }
+
+        .card p,
+        .card li {
+          line-height: 1.65;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        th, td {
+          min-width: 120px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          font-size: 15px;
+        }
+
+        .nav {
+          height: 70px;
+        }
+
+        label.logo {
+          padding: 0 16px;
+          font-size: 17px;
+          line-height: 70px;
+        }
+
+        .checkbtn {
+          line-height: 70px;
+          margin-right: 16px;
+        }
+
+        .nav ul {
+          top: 70px;
+          height: calc(100vh - 70px);
+          height: calc(100dvh - 70px);
+        }
+
+        .nav ul li {
+          margin: 32px 0;
+        }
+
+        .card-container {
+          padding: 8px;
+        }
+
+        .card {
+          padding: 12px;
+          font-size: 15px;
+        }
+
+        .card h2 {
+          font-size: 20px;
+        }
+
+        .card h3 {
+          font-size: 17px;
+        }
+
+        .card pre {
+          padding: 10px;
+          font-size: 13px;
+        }
+
+        .card ol,
+        .card ul {
+          padding-left: 20px;
+        }
+
+        table {
+          font-size: 14px;
+        }
+
+        footer {
+          padding: 16px 12px;
+          line-height: 1.5;
+        }
+
+        footer ul {
+          max-width: 100%;
+        }
+      }
     </style>
   </head>
 
@@ -238,7 +416,7 @@
 
     <div class="card-container">
       <div class="card">
-        <h2>What is CSS?</h3><br>
+        <h2>What is CSS?</h2><br>
           <p>CSS is used to control the style of a web document in a simple and easy way. CSS is the acronym for
             <strong>“Cascading Style Sheet”</strong>. CSS is a simple design language intended to simplify the process of making web
             pages presentable. Before CSS came, designers were dependent on the standard formatting techniques
@@ -247,7 +425,7 @@
       </div>
 
       <div class="card">
-        <h2>Application of CSS</h3><br>
+        <h2>Application of CSS</h2><br>
           <p><strong>CSS saves time -</strong> reusability of same sheet in multiple HTML pages. This defines a style for each
             HTML element and applies it to as many Web pages as you want.</p>
           <p><strong>Pages load faster -</strong> no need to write HTML tag attributes, just write one CSS rule of a tag and
@@ -259,7 +437,7 @@
       </div>
 
       <div class="card">
-        <h2>Three Ways to Use CSS</h3><br>
+        <h2>Three Ways to Use CSS</h2><br>
           <p>We can add CSS code in any combination of three different ways:</p><br>
           <ol style="margin-left: 100px;">
               <li><strong>1. Inline Style -</strong> CSS code is placed directly into an HTML element within the &lt;body&gt; section of a
@@ -320,7 +498,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Terminology and Syntax</h3><br>
+        <h2>CSS Terminology and Syntax</h2><br>
           <p>Now let's take a closer look at how we write CSS code. The correct syntax of a CSS declaration is:</p><br>
             <pre>
               selector {property:value;}</pre><br>
@@ -332,7 +510,7 @@
         </div>
 
       <div class="card">
-        <h2>Setting Multiple Properties</h3><br>
+        <h2>Setting Multiple Properties</h2><br>
           <p>We can define as many properties as we wish for a selector:</p><br>
             <pre>
               p {color:red;font-style:italic;text-align:center;}</pre><br>
@@ -350,7 +528,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Text Properties</h3><br>
+        <h2>CSS Text Properties</h2><br>
           <p>The following properties can be specified for any element that contains text, such as &lt;h1&gt; through &lt;h6&gt;,
             &lt;p&gt;, &lt;ol&gt;, &lt;ul&gt;, and &lt;a&gt;:</p><br>
           <table>
@@ -474,7 +652,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Background</h3><br>
+        <h2>CSS Background</h2><br>
           <p>Apply colors and background colors to your website are the main focus of this lesson. The advanced
             methods to position and control background images with the use of the following CSS properties listed
             below:</p><br>
@@ -678,7 +856,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Text</h3><br>
+        <h2>CSS Text</h2><br>
           <p>Formatting and adding style to text is a key issue for any web designer. CSS can add layout to text. The
             following text properties will be described as follows:</p><br>
           <ul style="margin-left: 100px;">
@@ -841,7 +1019,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Fonts</h3><br>
+        <h2>CSS Fonts</h2><br>
           <p>In this lesson you will learn about fonts and how they are applied using CSS. The following CSS
           properties will be described:</p><br>
           <h3>Font family</h3>
@@ -1002,7 +1180,7 @@
       </div>
 
       <div class="card">
-        <h2>CSS Borders</h3><br>
+        <h2>CSS Borders</h2><br>
           <p>Borders can be used for many things, for example as a decorative element of to underline a separation
             of two things. CSS gives you nonstop options when using borders in your pages. The following are listed
             below:</p><br>

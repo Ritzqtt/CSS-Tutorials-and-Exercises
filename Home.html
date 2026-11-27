@@ -29,12 +29,20 @@
 
       html {
         scroll-behavior: smooth;
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar {
+        display: none;
       }
 
       .nav {
         background: #097969;
         height: 80px;
         width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 300;
       }
 
       label.logo {
@@ -94,6 +102,10 @@
       }
 
       @media (max-width: 890px) {
+        body:has(#check:checked) {
+          overflow: hidden;
+        }
+
         .checkbtn {
           display: block;
         }
@@ -102,15 +114,20 @@
           font-size: 22px;
         }
 
-        ul {
+        .nav ul {
           position: fixed;
+          inset: 80px 0 0;
           width: 100%;
-          height: 100vh;
+          height: calc(100vh - 80px);
+          height: calc(100dvh - 80px);
           background: #2c3e50;
-          top: 80px;
           left: -100%;
           text-align: center;
           transition: all 0.5s;
+          z-index: 299;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
         }
 
         .nav ul li {
@@ -130,6 +147,50 @@
 
         #check:checked ~ ul {
           left: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav {
+          height: 70px;
+        }
+
+        label.logo {
+          padding: 0 16px;
+          font-size: 17px;
+          line-height: 70px;
+        }
+
+        .checkbtn {
+          line-height: 70px;
+          margin-right: 16px;
+        }
+
+        .nav ul {
+          top: 70px;
+          height: calc(100vh - 70px);
+          height: calc(100dvh - 70px);
+        }
+
+        .nav ul li {
+          margin: 32px 0;
+        }
+
+        .home-content {
+          padding: 16px;
+        }
+
+        .intro h1 {
+          font-size: 24px;
+        }
+
+        .intro p {
+          line-height: 1.6;
+        }
+
+        .cta-button {
+          display: inline-block;
+          margin-bottom: 4px;
         }
       }
 

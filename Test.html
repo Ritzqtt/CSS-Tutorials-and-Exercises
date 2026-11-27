@@ -25,12 +25,20 @@
         html {
             scroll-behavior: smooth;
             padding-top: 70px 50px 20px;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
         }
 
         .nav {
             background: #097969;
             height: 80px;
             width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 300;
         }
 
         label.logo {
@@ -91,6 +99,10 @@
         }
 
         @media (max-width: 890px) {
+            body:has(#check:checked) {
+                overflow: hidden;
+            }
+
             .checkbtn {
                 display: block;
             }
@@ -99,15 +111,20 @@
                 font-size: 22px;
             }
 
-            ul {
+            .nav ul {
                 position: fixed;
+                inset: 80px 0 0;
                 width: 100%;
-                height: 100vh;
+                height: calc(100vh - 80px);
+                height: calc(100dvh - 80px);
                 background: #2c3e50;
-                top: 80px;
                 left: -100%;
                 text-align: center;
                 transition: all .5s;
+                z-index: 299;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                -webkit-overflow-scrolling: touch;
             }
 
             .nav ul li {
@@ -253,6 +270,71 @@
 
         body:has(:nth-child(n + 10)) #backToTop {
             display: block;
+        }
+
+        @media (max-width: 890px) {
+            .quiz-container {
+                margin: 0 12px;
+                padding: 16px;
+            }
+
+            .results-content {
+                width: calc(100% - 32px);
+                max-width: 400px;
+            }
+
+            .answers label {
+                padding: 6px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                height: 70px;
+            }
+
+            label.logo {
+                padding: 0 16px;
+                font-size: 17px;
+                line-height: 70px;
+            }
+
+            .checkbtn {
+                line-height: 70px;
+                margin-right: 16px;
+            }
+
+            .nav ul {
+                top: 70px;
+                height: calc(100vh - 70px);
+                height: calc(100dvh - 70px);
+            }
+
+            .nav ul li {
+                margin: 32px 0;
+            }
+
+            .quiz-container {
+                margin: 0 8px;
+                padding: 12px;
+            }
+
+            .question-card {
+                padding: 12px;
+            }
+
+            .question {
+                line-height: 1.4;
+            }
+
+            .results-content {
+                width: calc(100% - 24px);
+                padding: 20px;
+            }
+
+            .results-content p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
